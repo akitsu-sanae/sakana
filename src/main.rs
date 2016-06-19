@@ -6,18 +6,27 @@
 ============================================================================*/
 
 extern crate piston_window;
+
 use piston_window::*;
+
+mod keyboard_;
+mod player;
+mod shot;
+mod game_scene;
 
 fn main() {
     let mut window: PistonWindow = WindowSettings::new("sakana", [640, 480])
         .exit_on_esc(true).build().unwrap();
 
-    while let Some(e) = window.next() {
+    let mut events = window.events();
+    let mut scene = game_scene::GameScene::new();
+
+    while let Some(e) = events.next(&mut window) {
+        scene.update(&e);
+
         window.draw_2d(&e, |c, g| {
-            clear([0.0; 4], g);
-            rectangle([0.0, 0.5, 0.7, 0.8],
-                      [100.0, 100.0, 100.0, 100.0],
-                      c.transform, g);
+            clear([0.0, 0.0, 0.0, 1.0], g);
+            scene.draw(&c, g);
         });
     }
 }
