@@ -12,6 +12,7 @@ use piston_window::*;
 mod keyboard_;
 mod player;
 mod enemy;
+mod enemy_company;
 mod shot;
 mod game_scene;
 
