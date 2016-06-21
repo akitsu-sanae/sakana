@@ -1,14 +1,19 @@
 
 pub struct Shot {
     pub position: [f64; 2],
-    pub speed: f64,
-    pub angle: f64,
     pub is_alive: bool,
 }
 
 use piston_window::*;
 
 impl Shot {
+
+    pub fn new(pos: [f64; 2]) -> Shot {
+        Shot {
+            position: pos,
+            is_alive: true,
+        }
+    }
 
     pub fn update(&mut self) {
         self.position[1] -= 3.0;

@@ -1,6 +1,5 @@
 
 pub struct Player {
-    pub name: String,
     pub position: [f64; 2],
 }
 use keyboard_::*;

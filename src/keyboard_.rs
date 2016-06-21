@@ -11,6 +11,16 @@ pub struct Keyboard {
 use piston_window::*;
 
 impl Keyboard {
+    pub fn new() -> Keyboard {
+        Keyboard {
+            is_left: false,
+            is_right: false,
+            is_up: false,
+            is_down: false,
+            is_button1: false,
+            is_button2: false,
+        }
+    }
     pub fn update(&mut self, e: &Event) {
         if let Some(Button::Keyboard(key)) = e.press_args() {
             match key {

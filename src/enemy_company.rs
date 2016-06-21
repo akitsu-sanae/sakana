@@ -24,12 +24,7 @@ impl EnemyCompany {
             (*e).update();
         }
         if keyboard.is_button2 {
-            self.enemies.push(Enemy {
-                position: [32.0, 32.0],
-                speed: 0.0,
-                angle: 0.0,
-                is_alive: true,
-            });
+            self.enemies.push(Enemy::new([32.0, 32.0]));
         }
     }
 

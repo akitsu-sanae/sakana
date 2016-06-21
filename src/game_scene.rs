@@ -21,17 +21,9 @@ impl GameScene {
             shots: vec![],
             enemy_company : EnemyCompany::load("resource/enemy_data.dat".to_string()).unwrap(),
             player: Player {
-                name: "akitsu-sanae".to_string(),
                 position: [300.0, 400.0],
             },
-            keyboard: Keyboard {
-                is_left: false,
-                is_right: false,
-                is_up: false,
-                is_down: false,
-                is_button1: false,
-                is_button2: false,
-            },
+            keyboard: Keyboard::new(),
             counter: 0,
         }
     }
@@ -43,12 +35,7 @@ impl GameScene {
         self.shots.retain(|ref s| (*s).is_alive);
 
         if self.keyboard.is_button1 && self.counter%6 == 0 {
-            self.shots.push(Shot{
-                position: self.player.position.clone(),
-                speed: 0.0,
-                angle: 0.0,
-                is_alive: true,
-            });
+            self.shots.push(Shot::new(self.player.position));
         }
 
         self.enemy_company.update(&self.keyboard);
