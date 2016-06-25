@@ -8,19 +8,28 @@
 pub struct Enemy {
     pub position: [f64; 2],
     pub is_alive: bool,
+    pub counter: i32,
 }
 
 use piston_window::*;
+use bullet_company::*;
 
 impl Enemy {
     pub fn new(pos: [f64; 2]) -> Enemy {
         Enemy {
             position: pos,
             is_alive: true,
+            counter: 0,
         }
     }
-    pub fn update(&mut self) {
+    pub fn update(&mut self, bullets: &mut BulletCompany) {
         self.position[1] += 1.0;
+        self.counter += 1;
+
+        if self.counter >= 60 {
+            bullets.add(self.position);
+            self.counter -= 60;
+        }
 
         if self.position[0] < 0.0
             || self.position[0] > 640.0

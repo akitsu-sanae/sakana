@@ -7,6 +7,7 @@
 
 use shot::*;
 use enemy_company::*;
+use bullet_company::*;
 use keyboard_::*;
 use player::*;
 use piston_window::*;
@@ -14,6 +15,7 @@ use piston_window::*;
 pub struct GameScene {
     shots: Vec<Shot>,
     enemy_company: EnemyCompany,
+    bullet_company: BulletCompany,
     player: Player,
 
     keyboard: Keyboard,
@@ -26,6 +28,7 @@ impl GameScene {
         GameScene {
             shots: vec![],
             enemy_company : EnemyCompany::load("resource/enemy_data.dat".to_string()).unwrap(),
+            bullet_company: BulletCompany::new(),
             player: Player {
                 position: [300.0, 400.0],
             },
@@ -44,7 +47,8 @@ impl GameScene {
             self.shots.push(Shot::new(self.player.position));
         }
 
-        self.enemy_company.update(&self.keyboard);
+        self.enemy_company.update(&self.keyboard, &mut self.bullet_company);
+        self.bullet_company.update();
 
         for ref mut s in &mut self.shots {
             (*s).update();
@@ -59,6 +63,7 @@ impl GameScene {
             (*s).draw(c, g);
         }
         self.enemy_company.draw(c, g);
+        self.bullet_company.draw(c, g);
     }
 }
 

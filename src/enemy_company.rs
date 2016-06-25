@@ -8,6 +8,7 @@
 use piston_window::*;
 use keyboard_::*;
 use enemy::*;
+use bullet_company::*;
 
 pub struct EnemyCompany {
     pub enemies: Vec<Enemy>,
@@ -24,10 +25,10 @@ impl EnemyCompany {
             enemies: vec![],
         })
     }
-    pub fn update(&mut self, keyboard: &Keyboard) {
+    pub fn update(&mut self, keyboard: &Keyboard, bullet_company: &mut BulletCompany) {
         self.enemies.retain(|ref e| (*e).is_alive);
         for ref mut e in &mut self.enemies {
-            (*e).update();
+            (*e).update(bullet_company);
         }
         if keyboard.is_button2 {
             self.enemies.push(Enemy::new([32.0, 32.0]));

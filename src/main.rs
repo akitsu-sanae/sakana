@@ -13,6 +13,8 @@ mod keyboard_;
 mod player;
 mod enemy;
 mod enemy_company;
+mod bullet;
+mod bullet_company;
 mod shot;
 mod game_scene;
 
