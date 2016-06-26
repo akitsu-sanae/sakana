@@ -8,10 +8,11 @@
 use piston_window::*;
 use keyboard_::*;
 use enemy::*;
+use kfa::*;
 use bullet_company::*;
 
 pub struct EnemyCompany {
-    pub enemies: Vec<Enemy>,
+    pub enemies: Vec<Box<Enemy>>,
 }
 
 use std::option::Option;
@@ -26,12 +27,12 @@ impl EnemyCompany {
         })
     }
     pub fn update(&mut self, keyboard: &Keyboard, bullet_company: &mut BulletCompany) {
-        self.enemies.retain(|ref e| (*e).is_alive);
+        self.enemies.retain(|ref e| (*e).is_alive());
         for ref mut e in &mut self.enemies {
             (*e).update(bullet_company);
         }
         if keyboard.is_button2 {
-            self.enemies.push(Enemy::new([32.0, 32.0]));
+            self.enemies.push(Kfa::new([32.0, 32.0]));
         }
     }
 

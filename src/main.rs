@@ -5,6 +5,8 @@
   file LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
 ============================================================================*/
 
+#![feature(box_syntax)]
+
 extern crate piston_window;
 
 use piston_window::*;
@@ -12,6 +14,7 @@ use piston_window::*;
 mod keyboard_;
 mod player;
 mod enemy;
+mod kfa;
 mod enemy_company;
 mod bullet;
 mod bullet_company;
