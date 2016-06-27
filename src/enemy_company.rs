@@ -9,6 +9,7 @@ use piston_window::*;
 use keyboard_::*;
 use enemy::*;
 use kfa::*;
+use ogm::*;
 use bullet_company::*;
 
 pub struct EnemyCompany {
@@ -32,7 +33,7 @@ impl EnemyCompany {
             (*e).update(bullet_company);
         }
         if keyboard.is_button2 {
-            self.enemies.push(Kfa::new([32.0, 32.0]));
+            self.enemies.push(Ogm::new([320.0, 32.0]));
         }
     }
 

@@ -6,7 +6,6 @@
 ============================================================================*/
 
 use piston_window::*;
-use keyboard_::*;
 use bullet::*;
 
 pub struct BulletCompany {
