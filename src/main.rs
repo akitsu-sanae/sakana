@@ -15,6 +15,7 @@ mod keyboard_;
 mod player;
 mod enemy;
 mod kfa;
+mod ogm;
 mod enemy_company;
 mod bullet;
 mod bullet_company;
