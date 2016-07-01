@@ -27,7 +27,7 @@ impl GameScene {
     pub fn new() -> GameScene {
         GameScene {
             shots: vec![],
-            enemy_company : EnemyCompany::load("resource/enemy_data.dat".to_string()).unwrap(),
+            enemy_company : EnemyCompany::load("resource/enemy_data.dat"),
             bullet_company: BulletCompany::new(),
             player: Player {
                 position: [300.0, 400.0],
@@ -47,7 +47,7 @@ impl GameScene {
             self.shots.push(Shot::new(self.player.position));
         }
 
-        self.enemy_company.update(&self.keyboard, &mut self.bullet_company);
+        self.enemy_company.update(&mut self.bullet_company);
         self.bullet_company.update();
 
         for ref mut s in &mut self.shots {
