@@ -11,6 +11,7 @@ use bullet_company::*;
 use keyboard_::*;
 use player::*;
 use piston_window::*;
+use scene::*;
 
 pub struct GameScene {
     shots: Vec<Shot>,
@@ -22,10 +23,10 @@ pub struct GameScene {
     counter: u32,
 }
 
-impl GameScene {
+impl Scene for GameScene {
 
-    pub fn new() -> GameScene {
-        GameScene {
+    fn new() -> Box<GameScene> {
+        box GameScene {
             shots: vec![],
             enemy_company : EnemyCompany::load("resource/enemy_data.dat"),
             bullet_company: BulletCompany::new(),
@@ -37,7 +38,7 @@ impl GameScene {
         }
     }
 
-    pub fn update(&mut self, e: &Event) {
+    fn update(&mut self, e: &Event) -> Option<Box<Scene>> {
         self.keyboard.update(e);
         self.player.update(&self.keyboard);
 
@@ -55,9 +56,10 @@ impl GameScene {
         }
 
         self.counter += 1;
+        None
     }
 
-    pub fn draw(&self, c: &Context, g: &mut G2d) {
+    fn draw(&self, c: &Context, g: &mut G2d) {
         self.player.draw(c, g);
         for ref s in &self.shots {
             (*s).draw(c, g);

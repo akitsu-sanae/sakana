@@ -20,17 +20,23 @@ mod enemy_company;
 mod bullet;
 mod bullet_company;
 mod shot;
+mod scene;
 mod game_scene;
+
+use scene::*;
 
 fn main() {
     let mut window: PistonWindow = WindowSettings::new("sakana", [640, 480])
         .exit_on_esc(true).build().unwrap();
 
     let mut events = window.events();
-    let mut scene = game_scene::GameScene::new();
+    let mut scene: Box<Scene> = game_scene::GameScene::new();
 
     while let Some(e) = events.next(&mut window) {
-        scene.update(&e);
+        let next_scene = scene.update(&e);
+        if let Some(s) = next_scene {
+            scene = s;
+        }
 
         window.draw_2d(&e, |c, g| {
             clear([0.0, 0.0, 0.0, 1.0], g);
