@@ -21,6 +21,7 @@ mod bullet;
 mod bullet_company;
 mod shot;
 mod scene;
+mod title_scene;
 mod game_scene;
 
 use scene::*;
@@ -30,7 +31,7 @@ fn main() {
         .exit_on_esc(true).build().unwrap();
 
     let mut events = window.events();
-    let mut scene: Box<Scene> = game_scene::GameScene::new();
+    let mut scene: Box<Scene> = title_scene::TitleScene::new();
 
     while let Some(e) = events.next(&mut window) {
         let next_scene = scene.update(&e);
