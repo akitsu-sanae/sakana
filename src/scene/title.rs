@@ -8,16 +8,16 @@
 use piston_window::*;
 use keyboard_::*;
 use scene::*;
-use game_scene::*;
+use super::game::*;
 
-pub struct TitleScene {
+pub struct Title {
     keyboard: Keyboard,
 }
 
-impl Scene for TitleScene {
+impl Scene for Title {
 
-    fn new() -> Box<TitleScene> {
-        box TitleScene {
+    fn new() -> Box<Title> {
+        box Title {
             keyboard: Keyboard::new(),
         }
     }
@@ -26,7 +26,7 @@ impl Scene for TitleScene {
         self.keyboard.update(e);
 
         if self.keyboard.is_button1 {
-            Some(GameScene::new())
+            Some(Game::new())
         } else {
             None
         }

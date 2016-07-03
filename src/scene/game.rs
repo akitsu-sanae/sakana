@@ -6,14 +6,14 @@
 ============================================================================*/
 
 use shot::*;
-use enemy_company::*;
+use enemy::company::*;
 use bullet_company::*;
 use keyboard_::*;
 use player::*;
 use piston_window::*;
 use scene::*;
 
-pub struct GameScene {
+pub struct Game {
     shots: Vec<Shot>,
     enemy_company: EnemyCompany,
     bullet_company: BulletCompany,
@@ -23,12 +23,12 @@ pub struct GameScene {
     counter: u32,
 }
 
-impl Scene for GameScene {
+impl Scene for Game {
 
-    fn new() -> Box<GameScene> {
-        box GameScene {
+    fn new() -> Box<Game> {
+        box Game {
             shots: vec![],
-            enemy_company : EnemyCompany::load("resource/enemy_data.dat"),
+            enemy_company : EnemyCompany::load("../resource/enemy_data.dat"),
             bullet_company: BulletCompany::new(),
             player: Player {
                 position: [300.0, 400.0],

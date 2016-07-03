@@ -7,8 +7,8 @@
 
 use piston_window::*;
 use enemy::*;
-use kfa::*;
-use ogm::*;
+use super::kfa::*;
+use super::ogm::*;
 use bullet_company::*;
 
 pub enum EnemyType {

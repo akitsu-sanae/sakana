@@ -5,6 +5,10 @@
   file LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt)
 ============================================================================*/
 
+pub mod company;
+pub mod kfa;
+pub mod ogm;
+
 use piston_window::*;
 use bullet_company::*;
 

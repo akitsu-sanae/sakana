@@ -14,15 +14,10 @@ use piston_window::*;
 mod keyboard_;
 mod player;
 mod enemy;
-mod kfa;
-mod ogm;
-mod enemy_company;
 mod bullet;
 mod bullet_company;
 mod shot;
 mod scene;
-mod title_scene;
-mod game_scene;
 
 use scene::*;
 
@@ -31,7 +26,7 @@ fn main() {
         .exit_on_esc(true).build().unwrap();
 
     let mut events = window.events();
-    let mut scene: Box<Scene> = title_scene::TitleScene::new();
+    let mut scene: Box<Scene> = scene::title::Title::new();
 
     while let Some(e) = events.next(&mut window) {
         let next_scene = scene.update(&e);
