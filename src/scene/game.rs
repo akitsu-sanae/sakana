@@ -28,7 +28,7 @@ impl Scene for Game {
     fn new() -> Box<Game> {
         box Game {
             shots: vec![],
-            enemy_company : EnemyCompany::load("../resource/enemy_data.dat"),
+            enemy_company : EnemyCompany::load("resource/enemy_data.dat"),
             bullet_company: BulletCompany::new(),
             player: Player {
                 position: [300.0, 400.0],
