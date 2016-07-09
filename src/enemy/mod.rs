@@ -15,7 +15,25 @@ use bullet_company::*;
 pub trait Enemy {
     fn new(pos: [f64; 2]) -> Box<Self> where Self: Sized;
     fn update(&mut self, bullets: &mut BulletCompany);
-    fn is_alive(&self) -> bool;
     fn draw(&self, c: &Context, g: &mut G2d);
+
+    // getter
+    fn position(&self) -> [f64; 2];
+
+    fn is_alive(&self) -> bool {
+        if self.position()[0] < -32.0 {
+            return false;
+        }
+        if self.position()[0] > 640.0 + 32.0 {
+            return false;
+        }
+        if self.position()[1] < -32.0 {
+            return false;
+        }
+        if self.position()[1] > 480.0 + 32.0 {
+            return false;
+        }
+        return true;
+    }
 }
 

@@ -44,22 +44,9 @@ impl Enemy for Ogm {
                 c.transform, g);
     }
 
-    fn is_alive(&self) -> bool {
-        if self.position[0] < -32.0 {
-            return false;
-        }
-        if self.position[0] > 640.0 + 32.0 {
-            return false;
-        }
-        if self.position[1] < -32.0 {
-            return false;
-        }
-        if self.position[1] > 480.0 + 32.0 {
-            return false;
-        }
-        return true;
+    fn position(&self) -> [f64; 2] {
+        return self.position;
     }
-
 }
 
 
