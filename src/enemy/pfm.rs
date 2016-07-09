@@ -9,6 +9,8 @@ use enemy::*;
 use piston_window::*;
 use bullet_company::*;
 
+use std::f64::consts::PI;
+
 
 // big enemy
 pub struct Pfm {
@@ -26,6 +28,15 @@ impl Enemy for Pfm {
     fn update(&mut self, bullets: &mut BulletCompany) {
         self.position[1] += 0.5;
         self.counter += 1;
+
+        if self.counter%5 == 0 {
+            let angle = 2.0 * PI * (self.counter as f64) / 360.0;
+            bullets.add(self.position, angle);
+        }
+
+        if self.counter > 360 {
+            self.counter = 0;
+        }
     }
 
     fn draw(&self, c: &Context, g: &mut G2d) {
