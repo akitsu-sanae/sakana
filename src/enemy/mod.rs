@@ -8,6 +8,7 @@
 pub mod company;
 pub mod kfa;
 pub mod ogm;
+pub mod pfm;
 
 use piston_window::*;
 use bullet_company::*;

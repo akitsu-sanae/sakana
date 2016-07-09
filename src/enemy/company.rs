@@ -9,11 +9,13 @@ use piston_window::*;
 use enemy::*;
 use super::kfa::*;
 use super::ogm::*;
+use super::pfm::*;
 use bullet_company::*;
 
 pub enum EnemyType {
     Kfa,
-    Ogm
+    Ogm,
+    Pfm,
 }
 
 pub struct EnemyEmergeData {
@@ -64,6 +66,7 @@ impl EnemyCompany {
             self.enemies.push(match self.emerge_data[0].enemy_type {
                 EnemyType::Kfa => Kfa::new(self.emerge_data[0].position),
                 EnemyType::Ogm => Ogm::new(self.emerge_data[0].position),
+                EnemyType::Pfm => Pfm::new(self.emerge_data[0].position),
             });
             self.emerge_data.remove(0);
         } else {
@@ -90,6 +93,7 @@ impl EnemyCompany {
                 enemy_type: match infos[1] {
                     "Kfa" => EnemyType::Kfa,
                     "Ogm" => EnemyType::Ogm,
+                    "Pfm" => EnemyType::Pfm,
                     _ => panic!("invalid enemy type: {}", infos[1]),
                 },
                 position: [infos[2].parse::<f64>().unwrap(), infos[3].parse::<f64>().unwrap()],

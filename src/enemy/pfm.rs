@@ -10,50 +10,33 @@ use piston_window::*;
 use bullet_company::*;
 
 
-// small enemy
+// big enemy
 pub struct Pfm {
     pub position: [f64; 2],
     counter: i32,
 }
-impl Enemy for Kfa {
-    fn new(pos: [f64; 2]) -> Box<Kfa> {
-        box Kfa {
+impl Enemy for Pfm {
+    fn new(pos: [f64; 2]) -> Box<Pfm> {
+        box Pfm {
             position: pos,
             counter: 0,
         }
     }
 
     fn update(&mut self, bullets: &mut BulletCompany) {
-        self.position[1] += 1.0;
+        self.position[1] += 0.5;
         self.counter += 1;
-
-        if self.counter >= 60 {
-            bullets.add(self.position);
-            self.counter -= 60;
-        }
     }
 
     fn draw(&self, c: &Context, g: &mut G2d) {
-        rectangle([1.0, 0.5, 0.2, 0.5],
-                 [self.position[0] - 16.0, self.position[1] - 16.0,
-                32.0, 32.0],
+        rectangle([0.4, 0.4, 0.4, 0.5],
+                 [self.position[0] - 32.0, self.position[1] - 32.0,
+                64.0, 64.0],
                 c.transform, g);
     }
 
-    fn is_alive(&self) -> bool {
-        if self.position[0] < -32.0 {
-            return false;
-        }
-        if self.position[0] > 640.0 + 32.0 {
-            return false;
-        }
-        if self.position[1] < -32.0 {
-            return false;
-        }
-        if self.position[1] > 480.0 + 32.0 {
-            return false;
-        }
-        return true;
+    fn position(&self) -> [f64; 2] {
+        self.position
     }
 }
 
