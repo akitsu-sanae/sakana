@@ -9,6 +9,7 @@ use enemy::*;
 use piston_window::*;
 use bullet_company::*;
 
+use std::f64::consts::PI;
 
 // small enemy
 pub struct Kfa {
@@ -28,7 +29,7 @@ impl Enemy for Kfa {
         self.counter += 1;
 
         if self.counter >= 60 {
-            bullets.add(self.position);
+            bullets.add(self.position, PI / 2.0);
             self.counter -= 60;
         }
     }

@@ -7,21 +7,25 @@
 
 pub struct Bullet {
     pub position: [f64;2],
+    pub angle: f64,
     pub is_alive: bool,
 }
 
 use piston_window::*;
+use std::f64;
 
 impl Bullet {
-    pub fn new(pos: [f64; 2]) -> Bullet {
+    pub fn new(pos: [f64; 2], angle: f64) -> Bullet {
         Bullet {
             position: pos,
+            angle: angle,
             is_alive: true,
         }
     }
 
     pub fn update(&mut self) {
-        self.position[1] += 2.0;
+        self.position[0] += 2.0 * self.angle.cos();
+        self.position[1] += 2.0 * self.angle.sin();
 
         if self.position[0] < 0.0
             || self.position[0] > 640.0

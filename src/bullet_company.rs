@@ -19,8 +19,8 @@ impl BulletCompany {
         }
     }
 
-    pub fn add(&mut self, pos: [f64; 2]) {
-        self.bullets.push(Bullet::new(pos));
+    pub fn add(&mut self, pos: [f64; 2], angle: f64) {
+        self.bullets.push(Bullet::new(pos, angle));
     }
     pub fn update(&mut self) {
         self.bullets.retain(|ref e| (*e).is_alive);
