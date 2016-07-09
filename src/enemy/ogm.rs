@@ -45,7 +45,7 @@ impl Enemy for Ogm {
     }
 
     fn position(&self) -> [f64; 2] {
-        return self.position;
+        self.position
     }
 }
 

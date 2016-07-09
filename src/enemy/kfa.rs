@@ -41,7 +41,7 @@ impl Enemy for Kfa {
     }
 
     fn position(&self) -> [f64; 2] {
-        return self.position;
+        self.position
     }
 }
 
