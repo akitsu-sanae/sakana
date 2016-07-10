@@ -42,7 +42,7 @@ impl Scene for Game {
         self.keyboard.update(e);
         self.player.update(&self.keyboard);
 
-        self.shots.retain(|ref s| (*s).is_alive);
+        self.shots.retain(|ref s| (*s).is_alive());
 
         if self.keyboard.is_button1 && self.counter%6 == 0 {
             self.shots.push(Shot::new(self.player.position));
