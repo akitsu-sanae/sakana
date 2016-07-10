@@ -12,9 +12,10 @@ use keyboard_::*;
 use player::*;
 use piston_window::*;
 use scene::*;
+use charactor::*;
 
 pub struct Game {
-    shots: Vec<Shot>,
+    shots: Vec<Box<Shot>>,
     enemy_company: EnemyCompany,
     bullet_company: BulletCompany,
     player: Player,
@@ -42,7 +43,7 @@ impl Scene for Game {
         self.keyboard.update(e);
         self.player.update(&self.keyboard);
 
-        self.shots.retain(|ref s| (*s).is_alive());
+        self.shots.retain(|s| (*s).is_alive());
 
         if self.keyboard.is_button1 && self.counter%6 == 0 {
             use std::f64::consts::PI;

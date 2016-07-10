@@ -7,9 +7,10 @@
 
 use piston_window::*;
 use bullet::*;
+use charactor::*;
 
 pub struct BulletCompany {
-    pub bullets: Vec<Bullet>,
+    pub bullets: Vec<Box<Bullet>>,
 }
 
 impl BulletCompany {

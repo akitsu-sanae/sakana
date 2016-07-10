@@ -12,6 +12,7 @@ extern crate piston_window;
 use piston_window::*;
 
 mod keyboard_;
+mod charactor;
 mod player;
 mod enemy;
 mod bullet;
