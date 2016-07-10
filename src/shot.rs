@@ -7,20 +7,24 @@
 
 pub struct Shot {
     pub position: [f64; 2],
+    pub angle: f64,
 }
 
 use piston_window::*;
+use std::f64;
 
 impl Shot {
 
-    pub fn new(pos: [f64; 2]) -> Shot {
+    pub fn new(pos: [f64; 2], angle: f64) -> Shot {
         Shot {
             position: pos,
+            angle: angle,
         }
     }
 
     pub fn update(&mut self) {
-        self.position[1] -= 3.0;
+        self.position[0] += 2.0 * self.angle.cos();
+        self.position[1] += 2.0 * self.angle.sin();
     }
 
     pub fn draw(&self, c: &Context, g: &mut G2d) {

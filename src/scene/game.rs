@@ -45,7 +45,11 @@ impl Scene for Game {
         self.shots.retain(|ref s| (*s).is_alive());
 
         if self.keyboard.is_button1 && self.counter%6 == 0 {
-            self.shots.push(Shot::new(self.player.position));
+            use std::f64::consts::PI;
+
+            self.shots.push(Shot::new(self.player.position, -PI/3.0));
+            self.shots.push(Shot::new(self.player.position, -PI/2.0));
+            self.shots.push(Shot::new(self.player.position, -PI*2.0/3.0));
         }
 
         self.enemy_company.update(&mut self.bullet_company);
