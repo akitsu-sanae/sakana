@@ -23,7 +23,7 @@ impl BulletCompany {
         self.bullets.push(Bullet::new(pos, angle));
     }
     pub fn update(&mut self) {
-        self.bullets.retain(|ref e| (*e).is_alive);
+        self.bullets.retain(|ref e| (*e).is_alive());
         for ref mut e in &mut self.bullets {
             (*e).update();
         }
