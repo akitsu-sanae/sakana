@@ -39,7 +39,7 @@ impl Charactor for Shot {
 
     fn position(&self) -> [f64; 2] { self.position }
 
-    fn on_collided(&mut self, other: &Box<Charactor>) {}
-    fn is_collided(&self, other: &Box<Charactor>) -> bool { false }
+    fn on_collided(&mut self, _other: &Box<Charactor>) {}
+    fn is_collided(&self, _other: &Box<Charactor>) -> bool { false }
 }
 

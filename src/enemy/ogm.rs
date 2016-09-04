@@ -24,7 +24,7 @@ impl Enemy for Ogm {
         }
     }
 
-    fn update(&mut self, bullets: &mut BulletCompany) {
+    fn update(&mut self, _bullets: &mut BulletCompany) {
         self.position[1] += 1.0;
         self.counter += 1;
 
