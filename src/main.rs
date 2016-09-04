@@ -41,13 +41,6 @@ fn main() {
         window.draw_2d(&e, |c, g| {
             clear([0.0, 0.0, 0.0, 1.0], g);
             scene.draw(&c, g, &mut resource);
-/*
-            text::Text::new_color([0.0, 1.0, 0.0, 1.0], 32).draw(
-                "Hello, World",
-                &mut glyphs,
-                &c.draw_state,
-                c.transform.trans(100.0, 100.0), g
-                );*/
         });
     }
 }
