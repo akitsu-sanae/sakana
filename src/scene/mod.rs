@@ -8,12 +8,13 @@ pub mod game;
 pub mod title;
 
 use piston_window::*;
+use resource::Resource;
 
 pub trait Scene {
     fn new() -> Box<Self> where Self: Sized;
 
     fn update(&mut self, e: &Event) -> Option<Box<Scene>>;
 
-    fn draw(&self, &Context, g: &mut G2d);
+    fn draw(&self, &Context, g: &mut G2d, resource: &mut Resource);
 }
 

@@ -12,6 +12,7 @@ use keyboard_::*;
 use player::*;
 use piston_window::*;
 use scene::*;
+use resource::Resource;
 use charactor::*;
 
 pub struct Game {
@@ -64,7 +65,7 @@ impl Scene for Game {
         None
     }
 
-    fn draw(&self, c: &Context, g: &mut G2d) {
+    fn draw(&self, c: &Context, g: &mut G2d, _resoure: &mut Resource) {
         self.player.draw(c, g);
         for ref s in &self.shots {
             (*s).draw(c, g);

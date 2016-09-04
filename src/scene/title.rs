@@ -8,6 +8,7 @@
 use piston_window::*;
 use keyboard_::*;
 use scene::*;
+use resource::Resource;
 use super::game::*;
 
 pub struct Title {
@@ -32,7 +33,13 @@ impl Scene for Title {
         }
     }
 
-    fn draw(&self, c: &Context, g: &mut G2d) {
+    fn draw(&self, c: &Context, g: &mut G2d, resource: &mut Resource) {
+        text::Text::new_color([0.0, 1.0, 0.0, 1.0], 32)
+            .draw("sakana", &mut resource.glyphs, &c.draw_state,
+                  c.transform.trans(100.0, 100.0), g);
+        text::Text::new_color([0.0, 1.0, 0.0, 1.0], 16)
+            .draw("Press Z Key to Start", &mut resource.glyphs, &c.draw_state,
+                  c.transform.trans(200.0, 200.0), g);
     }
 }
 

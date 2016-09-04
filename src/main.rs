@@ -8,6 +8,7 @@
 #![feature(box_syntax)]
 
 extern crate piston_window;
+extern crate find_folder;
 
 use piston_window::*;
 
@@ -19,17 +20,19 @@ mod bullet;
 mod bullet_company;
 mod shot;
 mod scene;
+mod resource;
 
 use scene::*;
 
 fn main() {
     let mut window: PistonWindow = WindowSettings::new("sakana", [640, 480])
-        .exit_on_esc(true).build().unwrap();
+        .exit_on_esc(true)
+        .build().expect("fail to initialize window");
 
-    let mut events = window.events();
     let mut scene: Box<Scene> = scene::title::Title::new();
+    let mut resource = resource::Resource::new(&window);
 
-    while let Some(e) = events.next(&mut window) {
+    while let Some(e) = window.next() {
         let next_scene = scene.update(&e);
         if let Some(s) = next_scene {
             scene = s;
@@ -37,7 +40,14 @@ fn main() {
 
         window.draw_2d(&e, |c, g| {
             clear([0.0, 0.0, 0.0, 1.0], g);
-            scene.draw(&c, g);
+            scene.draw(&c, g, &mut resource);
+/*
+            text::Text::new_color([0.0, 1.0, 0.0, 1.0], 32).draw(
+                "Hello, World",
+                &mut glyphs,
+                &c.draw_state,
+                c.transform.trans(100.0, 100.0), g
+                );*/
         });
     }
 }
