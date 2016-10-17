@@ -12,6 +12,7 @@ use keyboard_::*;
 use player::*;
 use piston_window::*;
 use scene::*;
+use super::game_over::*;
 use resource::Resource;
 use charactor::*;
 
@@ -34,6 +35,7 @@ impl Scene for Game {
             bullet_company: BulletCompany::new(),
             player: Player {
                 position: [300.0, 400.0],
+                hp: 3,
             },
             keyboard: Keyboard::new(),
             counter: 0,
@@ -55,23 +57,33 @@ impl Scene for Game {
         }
 
         self.enemy_company.update(&mut self.bullet_company);
-        self.bullet_company.update();
+        self.bullet_company.update(&mut self.player);
 
         for ref mut s in &mut self.shots {
             (*s).update();
         }
 
         self.counter += 1;
-        None
+
+        if self.player.hp < 0 {
+            Some(GameOver::new())
+        } else {
+            None
+        }
     }
 
-    fn draw(&self, c: &Context, g: &mut G2d, _resoure: &mut Resource) {
+    fn draw(&self, c: &Context, g: &mut G2d, resource: &mut Resource) {
         self.player.draw(c, g);
         for ref s in &self.shots {
             (*s).draw(c, g);
         }
         self.enemy_company.draw(c, g);
         self.bullet_company.draw(c, g);
+
+        text::Text::new_color([1.0, 0.0, 0.0, 1.0], 32)
+            .draw(format!("HP: {}", self.player.hp).as_str(),
+                  &mut resource.glyphs, &c.draw_state,
+                  c.transform.trans(16.0, 32.0), g);
     }
 }
 

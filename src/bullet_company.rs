@@ -8,6 +8,7 @@
 use piston_window::*;
 use bullet::*;
 use charactor::*;
+use player::Player;
 
 pub struct BulletCompany {
     pub bullets: Vec<Box<Bullet>>,
@@ -23,10 +24,16 @@ impl BulletCompany {
     pub fn add(&mut self, pos: [f64; 2], angle: f64) {
         self.bullets.push(Bullet::new(pos, angle));
     }
-    pub fn update(&mut self) {
+    pub fn update(&mut self, player: &mut Player) {
         self.bullets.retain(|ref e| (*e).is_alive());
         for ref mut e in &mut self.bullets {
             (*e).update();
+            let dx = player.position[0] - (*e).position[0];
+            let dy = player.position[1] - (*e).position[1];
+            if dx*dx + dy*dy < 25.0 {
+                (*e).position[0] = -114514.0;
+                player.hp -= 1;
+            }
         }
     }
     pub fn draw(&self, c: &Context, g: &mut G2d) {

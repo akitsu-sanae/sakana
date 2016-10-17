@@ -7,6 +7,7 @@
 
 pub struct Player {
     pub position: [f64; 2],
+    pub hp: i32,
 }
 use keyboard_::*;
 use piston_window::*;
