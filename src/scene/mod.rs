@@ -6,6 +6,7 @@
 ============================================================================*/
 pub mod game;
 pub mod title;
+pub mod game_over;
 
 use piston_window::*;
 use resource::Resource;
